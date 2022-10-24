@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
+    "migrate": "ts-node ./src/database/migrate.ts",
+    "populate": "ts-node ./src/database/populate.ts",
+    "full": "ts-node ./src/database/migrate.ts && ts-node ./src/database/populate.ts",
     "eslint": "eslint ./src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
