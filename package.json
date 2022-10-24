@@ -1,0 +1,40 @@
+{
+  "name": "softia-app",
+  "version": "1.0.0",
+  "description": "Softia technical assessment",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "eslint": "eslint ./src",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tinkyyy/softia-app.git"
+  },
+  "author": "Sabri BELGUERMA",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tinkyyy/softia-app/issues"
+  },
+  "homepage": "https://github.com/Tinkyyy/softia-app#readme",
+  "dependencies": {
+    "@types/express": "^4.17.14",
+    "@typescript-eslint/parser": "^5.40.1",
+    "dotenv": "^16.0.3",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.25.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.25.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "sequelize-cli": "^6.5.1"
+  }
+}
