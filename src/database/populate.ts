@@ -9,8 +9,15 @@ async function populate() {
     await sequelize.authenticate();
 
     // Populate
-    await Agreement.fill();
-    await Student.fill();
+    let { count } = await Agreement.findAndCountAll();
+    if (count === 0) {
+      await Agreement.fill();
+    }
+
+    count = (await Student.findAndCountAll()).count;
+    if (count === 0) {
+      await Student.fill();
+    }
   } catch (error) {
     console.log(error);
   } finally {
