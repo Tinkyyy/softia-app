@@ -46,7 +46,7 @@ Agreement.init({
   },
 }, {
   sequelize,
-  modelName: 'Agreement',
+  modelName: 'agreement',
   tableName: 'agreements',
   timestamps: false,
   underscored: true,
