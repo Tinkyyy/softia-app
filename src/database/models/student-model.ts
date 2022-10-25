@@ -57,12 +57,13 @@ Student.init({
   },
 }, {
   sequelize,
-  modelName: 'Student',
+  modelName: 'student',
   tableName: 'students',
   timestamps: false,
   underscored: true,
 });
 
 Agreement.hasOne(Student, { foreignKey: 'agreement_id' });
+Student.belongsTo(Agreement, { foreignKey: 'agreement_id' });
 
 export default Student;

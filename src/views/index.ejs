@@ -1,0 +1,73 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            $("#student-select").change(function () {
+                const firstname = $(this).find(':selected').data('student-firstname');
+                const lastname = $(this).find(':selected').data('student-lastname');
+                const hours = $(this).find(':selected').data('student-hours');
+                
+                let content = "";
+                
+                content += `Bonjour ${lastname} ${firstname}`;
+                content += '\n\n\n';
+                content += `Vous avez suivi ${hours} heures de formation chez FormationPlus.`;
+                content += '\n\n';
+                content += 'Pouvez-vous nous retourner ce mail avec la pièce jointe signée.';
+                content += '\n\n\n';
+                content += 'Cordialement, FormationPlus';
+
+                document.getElementById("agreement").value = $(this).find(':selected').data('agreement');
+                document.getElementById("content").value = content.trim();
+            });
+        });
+    </script>
+</head>
+<style>
+html,body {
+    height:100%;
+    width:100%;
+    margin:0;
+}
+body {
+    display: flex;
+    justify-content: center;
+}
+ select, input, textarea, button {
+    width: 100%;
+    box-sizing:border-box;
+}
+button {
+    text-align: center;
+}
+</style>
+
+<body>
+    <section>
+        <div>
+            <h1>Generate Certificate</h1>
+            <form action="/" method="POST">
+                <select id="student-select" name="student_id"">
+                    <option value="" selected>--- Select the student ---</option>
+                    <%students.forEach(function(student, index) {
+                        %><option 
+                        data-student-firstname="<%- student.get().firstname %>"
+                        data-student-lastname="<%- student.get().lastname %>"
+                        data-student-hours="<%- student.get().agreement.hours %>"
+                        data-agreement="<%- student.get().agreement.name %>"
+                        value="<%- student.get().id %>"> <%= student.get().fullname %></option><%
+                    });%>
+                </select>
+
+                <input type="text" style="resize: vertical" id="agreement" value="" disabled="disabled"/>
+
+                <textarea id="content" style="resize: vertical; height: 250px" value='<%- locals.content ? content : "" %>' name="content" placeholder="Contenu"></textarea>
+
+                <span><button type="text">Send</button></span>
+            </form>
+            <% if(created){ %>
+                <p>Certificate has been generated successfully.</p>
+            <% } %>
+        </div>
+    </section>
+</body>

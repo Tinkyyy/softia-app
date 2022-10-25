@@ -18,7 +18,7 @@
       /* Specify an output folder for all emitted files. */
       "outDir": "./build",
       /* Disable erasing `const enum` declarations in generated code. */
-      "preserveConstEnums": true,                       
+      "preserveConstEnums": true,
 
       /* Interop Constraints */
       /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables `allowSyntheticDefaultImports` for type compatibility. */
