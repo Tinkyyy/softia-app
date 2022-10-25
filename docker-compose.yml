@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  mysql:
+    container_name: softia-database
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: "softia"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "password"
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+      DB_HOSTNAME: mysql
+    volumes:
+      - mysql:/var/lib/mysql
+
+  softia-app:
+    restart: on-failure
+    container_name: softia-app
+    image: softia-app
+    ports:
+      - 8080:8080
+    environment:
+      - DATABASE_HOST=mysql
+      - DATABASE_NAME=softia
+      - DATABASE_USERNAME=user
+      - DATABASE_PASSWORD=password
+      - DATABASE_DIALECT=mysql
+      - WAIT_HOSTS=mysql:3306
+      - WAIT_HOSTS_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=20
+      - WAIT_HOST_CONNECT_TIMEOUT=30
+    depends_on:
+      - mysql
+    links:
+      - mysql
+    command: sh -c "/wait && npm run full && npm run dev"
+
+volumes:
+  mysql: {}
