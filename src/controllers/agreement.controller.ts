@@ -11,6 +11,4 @@ async function getAgreements() {
   return agreementsArray;
 }
 
-export default {
-  getAgreements,
-};
+export default getAgreements;
