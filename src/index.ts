@@ -3,8 +3,8 @@ import Express from 'express';
 import Student from './database/models/student-model';
 import Agreement from './database/models/agreement-model';
 import * as studentController from './controllers/student.controller';
-import * as agreementController from './controllers/agreement.controller';
-import * as certificateController from './controllers/certificate.controller';
+import getAgreements from './controllers/agreement.controller';
+import postCertificate from './controllers/certificate.controller';
 
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 app.get('/', async (request: Request, response: Response) => {
   const students: Student[] = await studentController.getStudents();
-  const agreements: Agreement[] = await agreementController.getAgreements();
+  const agreements: Agreement[] = await getAgreements();
 
   response.render('index', {
     created: false,
@@ -30,12 +30,12 @@ app.get('/', async (request: Request, response: Response) => {
 
 app.post('/', async (request: Request, response: Response) => {
   const students: Student[] = await studentController.getStudents();
-  const agreements: Agreement[] = await agreementController.getAgreements();
+  const agreements: Agreement[] = await getAgreements();
 
   await studentController.getStudentById(request.body.student_id)
     .then(async (student) => {
       if (student instanceof Student) {
-        await certificateController.postCertificate(student, request.body.content);
+        await postCertificate(student, request.body.content);
         response.render('index', {
           created: true,
           students,
@@ -48,5 +48,5 @@ app.post('/', async (request: Request, response: Response) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Softia is listening on port ${port}`);
 });

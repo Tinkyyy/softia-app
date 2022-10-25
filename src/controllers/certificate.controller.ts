@@ -8,6 +8,4 @@ async function postCertificate(student: Student, message: string) {
     `);
 }
 
-export default {
-  postCertificate,
-};
+export default postCertificate;
