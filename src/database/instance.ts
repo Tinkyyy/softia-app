@@ -13,6 +13,7 @@ const sequelize = new Sequelize(database.name, database.username, database.passw
   host: database.host,
   dialect: database.dialect,
   logging: false, // Avoid default execution sequelize
+  timezone: '+02:00',
 });
 
 export default sequelize;
